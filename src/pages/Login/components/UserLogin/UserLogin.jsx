@@ -192,14 +192,14 @@ export default class UserLogin extends Component {
                       size="small"
                       style={styles.inputIcon}
                     />
-                    <IceFormBinder name="imageCode" required message="必填">
-                      <Input maxLength={6} placeholder="验证码" />
+                    <IceFormBinder name="imageCode"  required message="必填">
+                      <Input  maxLength={2} placeholder="验证码" />
                     </IceFormBinder>     
                     <IceFormError name="imageCode" />
                   </Col>   
                   
                   <Col>
-                    <img src={image} />
+                    <img height="35" width="130" src={image} />
                   </Col>                
                   
                 </Row>
