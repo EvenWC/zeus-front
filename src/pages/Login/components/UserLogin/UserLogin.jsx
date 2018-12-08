@@ -253,6 +253,9 @@ export default class UserLogin extends Component {
 }
 
 const styles = {
+  slogan:{
+    color:"#3080FE"
+  },
   userLogin: {
     position: 'relative',
     height: '100vh',
