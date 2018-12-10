@@ -16,6 +16,8 @@ const { Row, Col } = Grid;
 const backgroundImage = require('./images/TB1zsNhXTtYBeNjy1XdXXXXyVXa-2252-1500.png');
 
 let websocket = null;
+
+let QC = window.QC;
 export default class UserLogin extends Component {
   static displayName = 'UserLogin';
 
@@ -75,6 +77,11 @@ export default class UserLogin extends Component {
   onClose = ()=>{
      this.setState({visible:false}); 
   }
+
+  qqSdkOpen = ()=>{
+    QC.Login.showPopup()
+  }
+
   openQQ = ()=>{
     if(!this.state.sessionId){
       websocket = new WebSocket("ws://120.78.175.69:8080/websocket");
@@ -161,8 +168,8 @@ export default class UserLogin extends Component {
                       size="small"
                       style={styles.inputIcon}
                     />
-                    <IceFormBinder name="account" required message="必填">
-                      <Input maxLength={20} placeholder="会员名/邮箱/手机号" />
+                    <IceFormBinder name="account" required message="必填" >
+                      <Input maxLength={20} width="140px" placeholder="会员名/邮箱/手机号" />
                     </IceFormBinder>
                   </Col>
                   <Col>
@@ -171,7 +178,7 @@ export default class UserLogin extends Component {
                 </Row>
 
                 <Row style={styles.formItem}>
-                  <Col>
+                  <Col span="12">
                     <IceIcon
                       type="lock"
                       size="small"
@@ -181,7 +188,7 @@ export default class UserLogin extends Component {
                       <Input htmlType="password" placeholder="密码" />
                     </IceFormBinder>
                   </Col>
-                  <Col>
+                  <Col span="5">
                     <IceFormError name="password" />
                   </Col>
                 </Row>
@@ -192,14 +199,18 @@ export default class UserLogin extends Component {
                       size="small"
                       style={styles.inputIcon}
                     />
+                    <span className = "image-input">
                     <IceFormBinder name="imageCode"  required message="必填">
-                      <Input  maxLength={2} placeholder="验证码" />
+                      <Input  maxLength={4} placeholder="验证码" />
                     </IceFormBinder>     
                     <IceFormError name="imageCode" />
+                    </span>
                   </Col>   
                   
                   <Col>
-                    <img height="35" width="130" src={image} />
+                     <span className = "image-code">
+                         <img  src={image} />
+                      </span>
                   </Col>                
                   
                 </Row>
@@ -226,7 +237,7 @@ export default class UserLogin extends Component {
                     立即注册
                   </a>
                   <span style={styles.line}>|</span>
-                  <a  onClick={this.openQQ} style={styles.link}>
+                  <a  onClick={this.qqSdkOpen} style={styles.link}>
                     qq登录
                   </a>
                 </Row>
@@ -280,7 +291,7 @@ const styles = {
   formItem: {
     position: 'relative',
     marginBottom: '25px',
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
   formTitle: {
     margin: '0 0 20px',
