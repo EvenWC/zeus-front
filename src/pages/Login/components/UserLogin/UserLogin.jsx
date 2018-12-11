@@ -77,9 +77,9 @@ export default class UserLogin extends Component {
   onClose = ()=>{
      this.setState({visible:false}); 
   }
-
-  qqSdkOpen = ()=>{
-    QC.Login.showPopup()
+  cbLoginFun = (oInfo, oOpts)=>{
+    alert(oInfo.nickname); // 昵称
+    alert(oOpts.btnId);    // 点击登录的按钮Id
   }
 
   openQQ = ()=>{
@@ -151,7 +151,7 @@ export default class UserLogin extends Component {
         />
         <div style={styles.contentWrapper} className="content-wrapper">
           <h2 style={styles.slogan} className="slogan">
-            欢迎登录 <br /> 我的圈子
+            welcome login
           </h2>
           <div style={styles.formContainer}>
             <h4 style={styles.formTitle}>登录</h4>
@@ -193,18 +193,16 @@ export default class UserLogin extends Component {
                   </Col>
                 </Row>
                 <Row style={styles.formItem}>
-                  <Col>
-                    <IceIcon
-                      type="lock"
+                  <Col className = "image-input">                 
+                   <IceIcon
+                      type="publish"
                       size="small"
-                      style={styles.inputIcon}
+                      style={styles.valiCodeIcon}
                     />
-                    <span className = "image-input">
                     <IceFormBinder name="imageCode"  required message="必填">
                       <Input  maxLength={4} placeholder="验证码" />
                     </IceFormBinder>     
                     <IceFormError name="imageCode" />
-                    </span>
                   </Col>   
                   
                   <Col>
@@ -237,9 +235,11 @@ export default class UserLogin extends Component {
                     立即注册
                   </a>
                   <span style={styles.line}>|</span>
-                  <a  onClick={this.qqSdkOpen} style={styles.link}>
-                    qq登录
+                  <a  onClick={this.openQQ} style={styles.link}>
+                    QQ登录
                   </a>
+                  <span style={styles.line}>|</span>
+                  <span id="qqLoginBtn"></span>
                 </Row>
               </div>
             </IceFormBinderWrapper>
@@ -303,6 +303,12 @@ const styles = {
     position: 'absolute',
     left: '0px',
     top: '3px',
+    color: '#999',
+  },
+  valiCodeIcon: {
+    position: 'absolute',
+    left: '0px',
+    top: '10px',
     color: '#999',
   },
   submitBtn: {
