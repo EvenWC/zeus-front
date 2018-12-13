@@ -14,10 +14,6 @@ import post from '../../../../utils/xFetch';
 const Toast = Feedback.toast;
 const { Row, Col } = Grid;
 
-function hello(params) {
-  console.log(params);
-  alert(222)
-}
 export default class Register extends Component {
   static displayName = 'Register';
 

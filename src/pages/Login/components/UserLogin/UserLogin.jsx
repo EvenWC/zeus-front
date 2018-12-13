@@ -252,7 +252,7 @@ export default class UserLogin extends Component {
           title="qq登录"
           footer={footer}
         >
-        <iframe id="qqLogin" src={`http://www.525qz.site/auth/qq.do?sessionId=${this.state.sessionId}`} onLoad={this.load} height="400" width="800" frameBorder="0px"> 
+        <iframe id="qqLogin" src={`http://www.525qz.site/auth/qq.do?state=${this.state.sessionId}`} onLoad={this.load} height="400" width="800" frameBorder="0px"> 
           
         </iframe>
         </Dialog>
