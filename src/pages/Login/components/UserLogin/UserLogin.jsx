@@ -91,7 +91,7 @@ export default class UserLogin extends Component {
       debugger;
       console.log(auth);
       console.log(this);
-      loginSuccessHandler(auth);
+      this.loginSuccessHandler(auth);
     }
 
 
