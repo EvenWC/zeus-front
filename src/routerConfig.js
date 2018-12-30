@@ -6,6 +6,7 @@ import BlankLayout from './layouts/BlankLayout';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Success from './pages/Login/components/UserLogin/Success';
 import HomeIndex from './pages/HomeIndex';
 
 import NotFound from './pages/NotFound';
@@ -25,6 +26,11 @@ const routerConfig = [
     path: '/login',
     layout: BlankLayout,
     component: Login,
+  },
+  {
+    path: '/success',
+    layout: BlankLayout,
+    component: Success,
   },
   {
     path: '/homeIndex',

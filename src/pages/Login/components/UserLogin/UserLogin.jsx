@@ -15,9 +15,7 @@ const { Row, Col } = Grid;
 // 寻找背景图片可以从 https://unsplash.com/ 寻找
 const backgroundImage = require('./images/TB1zsNhXTtYBeNjy1XdXXXXyVXa-2252-1500.png');
 
-let websocket = null;
 
-let QC = window.QC;
 export default class UserLogin extends Component {
   static displayName = 'UserLogin';
 
@@ -87,14 +85,9 @@ export default class UserLogin extends Component {
     //打开登录框
     this.setState({visible:true});
     //设置调用成功之后的回调
-    window.loginSuccessCallback = (auth)=>{
-      debugger;
-      console.log(auth);
-      console.log(this);
-      this.loginSuccessHandler(auth);
+    window.loginSuccessCallback = (userInfo)=>{
+      this.loginSuccessHandler(userInfo);
     }
-
-
   }
 
   
@@ -114,11 +107,6 @@ export default class UserLogin extends Component {
       sessionStorage.setItem("userInfo",userInfo);
     }
   }
-  //利用react钩子函数实现实时刷新    
-  componentWillUnmount() { 
-    !!websocket && websocket.close();
-  }
-
   render() {
 
     if (this.state.loginSuccess) {
@@ -239,7 +227,7 @@ export default class UserLogin extends Component {
           title="QQ登录"
           footer={footer}
         >
-        <iframe id="qqLogin" src={`http://www.525qz.site/auth/qq.do?state=${this.state.sessionId}`}  height="400" width="800" frameBorder="0px"> 
+        <iframe id="qqLogin" src={`http://www.525qz.site/auth/qq.do`}  height="400" width="800" frameBorder="0px"> 
           
         </iframe>
         </Dialog>
