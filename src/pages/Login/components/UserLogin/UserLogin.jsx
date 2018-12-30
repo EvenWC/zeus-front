@@ -82,35 +82,22 @@ export default class UserLogin extends Component {
     alert(oOpts.btnId);    // 点击登录的按钮Id
   }
 
+
   openQQ = ()=>{
-    if(!this.state.sessionId){
-      websocket = new WebSocket("ws://120.78.175.69:8080/websocket");
-    }else{
-      websocket.send(this.state.sessionId);
+    //打开登录框
+    this.setState({visible:true});
+    //设置调用成功之后的回调
+    window.loginSuccessCallback = (auth)=>{
+      debugger;
+      console.log(auth);
+      console.log(this);
+      loginSuccessHandler(auth);
     }
-    // 建立 web socket 连接成功触发事件
-    websocket.onopen = (evt) => {};
-    // 接收服务端数据时触发事件
-    websocket.onmessage = (evt) => {
-      var received_msg = evt.data;
-      try{
-        const json = JSON.parse(received_msg);
-        this.setState({visible:false},()=>{
-          this.loginSuccessHandler(json);
-          websocket.close();
-        });
-      }catch(error){
-        this.setState({sessionId:evt.data},this.setState({visible:true}));
-      }
-    };
-    // 断开 web socket 连接成功触发事件
-    websocket.onclose = ()=> {
-       this.setState({sessionId:undefined});
-    };
-    websocket.onerror = (e)=>{
-      this.setState({sessionId:undefined});
-    }
+
+
   }
+
+  
   //登录成功后处理器
   loginSuccessHandler = (userInfo)=>{
     Feedback.toast.success('登录成功');
@@ -249,10 +236,10 @@ export default class UserLogin extends Component {
         <Dialog
           visible={this.state.visible}
           onClose={this.onClose}
-          title="qq登录"
+          title="QQ登录"
           footer={footer}
         >
-        <iframe id="qqLogin" src={`http://www.525qz.site/auth/qq.do?state=${this.state.sessionId}`} onLoad={this.load} height="400" width="800" frameBorder="0px"> 
+        <iframe id="qqLogin" src={`http://www.525qz.site/auth/qq.do?state=${this.state.sessionId}`}  height="400" width="800" frameBorder="0px"> 
           
         </iframe>
         </Dialog>
