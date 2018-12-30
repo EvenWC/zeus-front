@@ -22,7 +22,7 @@ export default class Success extends Component {
   loadUserInfoAndSave = (accessToken) =>{
     //获取用户信息
       xFetch.get(`http://120.78.175.69:8080/users/current?accessToken=${accessToken}`).then(loginUserInfo=>{
-        window.parent.loginSuccessCallback(loginUserInfo.data);
+        window.parent.loginSuccessCallback(loginUserInfo);
       });
     }
   render() {
