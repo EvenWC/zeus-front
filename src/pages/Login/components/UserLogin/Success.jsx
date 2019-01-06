@@ -21,7 +21,7 @@ export default class Success extends Component {
   }
   loadUserInfoAndSave = (accessToken) =>{
     //获取用户信息
-      xFetch.get(`http://localhost:80/users/current?accessToken=${accessToken}`).then(loginUserInfo=>{
+      xFetch.get(`http://120.78.175.69:8080/users/current?accessToken=${accessToken}`).then(loginUserInfo=>{
         window.parent.loginSuccessCallback(loginUserInfo);
       });
     }
